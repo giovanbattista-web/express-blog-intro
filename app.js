@@ -1,15 +1,22 @@
+// IMPORTIAMO EXPRESS
 const express = require('express');
+
+// INIZIALIZZIAMO EXPRESS NELLA VARIABILE app
 const app = express();
+
+// DEFINIAMO LA PORTA 
 const port = 3000;
 
+// DEFINISCO GLI ASSET STATICI
 app.use(express.static('public'));
 
+// DEFINIAMO LA ROTTA BASE
 app.get('/',(req,res) =>{
     res.send('Server del mio blog');
    })
 
 app.get('/bacheca',(req,res) =>{
-    const people = [
+    const posts = [
         {
         title : 'Ciambellone',
         content : 'Il classico ciambellone con yogurt',
@@ -41,11 +48,14 @@ app.get('/bacheca',(req,res) =>{
         tags : ["javascript", "node", "blog"]
        },
     ]
-    res.json(people);
+
+    // INVIO L'ARRAY DEI POST QUANDO VIENE EFFETTUATA LA CHIAMATA BACHECA
+    res.json(posts);
     
 })
 
-app.listen(port,() =>{
+// DICIAMO AL SERVER DI RIMANERE IN ASCOLTO SULLA PORTA 3000
+app.listen(port, () =>{
     console.log(`Server in ascolto sulla porta ${port}`);
 })
 
